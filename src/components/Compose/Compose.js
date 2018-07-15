@@ -3,7 +3,6 @@ import ProfileIcon from 'react-icons/lib/md/person-outline';
 
 import './Compose.css';
 
-//////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *APP* COMPONENT
 
 export default class Compose extends Component {
   constructor() {
@@ -21,11 +20,16 @@ export default class Compose extends Component {
   }
 
   createPost() {
+    const { text } = this.state;
+    const { createPostFn } = this.props;
+
+    createPostFn( text );
+    this.setState({ text: '' });
 
   }
 
   render() {
-    // Destructuring
+   
     const { text } = this.state;
 
     return (
@@ -36,7 +40,7 @@ export default class Compose extends Component {
             <ProfileIcon />
           </div>
 
-          {/* This is where you type the message for your new post */}
+        
           <input className="Compose__input"
                  placeholder="What's on your mind?"
                  value={ text }
